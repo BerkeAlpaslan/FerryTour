@@ -45,15 +45,15 @@ void init_vehicles() {
     int i, j = 0;
 
     for (i = 0; i < 12; i++) {
-        vehicles[j++] = (Vehicle) {j, CAR, 1, rand() % 2, -1, 0};
+        vehicles[j++] = (Vehicle) {j, CAR, 1, SIDE_A, -1, 0};
     }
 
     for (i = 0; i < 10; i++) {
-        vehicles[j++] = (Vehicle) {j, MINIBUS, 2, rand() % 2, -1, 0};
+        vehicles[j++] = (Vehicle) {j, MINIBUS, 2, SIDE_A, -1, 0};
     }
 
     for (i = 0; i < 8; i++) {
-        vehicles[j++] = (Vehicle) {j, TRUCK, 3, rand() % 2, -1, 0};
+        vehicles[j++] = (Vehicle) {j, TRUCK, 3, SIDE_A, -1, 0};
     }
 }
 
@@ -74,46 +74,6 @@ void wait_square(Vehicle* vehicle) {
     pthread_mutex_unlock(&square_mutex[vehicle->side]);
 }
 
-void board_ferry(Vehicle* vehicle) {
-    pass_toll(vehicle);
-    wait_square(vehicle);
-
-    while (1) {
-        pthread_mutex_lock(&ferry_mutex);
-
-        if (vehicle->side == ferrySide && ferry_load + vehicle->load <= FERRY_CAPACITY) {
-            // Get on the ferry
-            ferry[ferryVehicleCount++] = vehicle;
-            ferry_load += vehicle->load;
-
-            // Exit from the square to ferry
-            pthread_mutex_lock(&square_mutex[vehicle->side]);
-            for (int i = 0; i < squareCount[vehicle->side]; i++) {
-                if (square[vehicle->side][i] == vehicle) {
-                    for (int j = i; j < squareCount[vehicle->side] - 1; j++) {
-                        square[vehicle->side][j] = square[vehicle->side][j + 1];
-                    }
-                    squareCount[vehicle->side]--;
-                    break;
-                }
-            }
-            pthread_mutex_unlock(&square_mutex[vehicle->side]);
-
-            printf("The vehicle #%d got on the ferry. (Type of Vehicle: %s, Side: %c)", vehicle->id, vehicle->type == 1 ? "CAR" : vehicle->type == 2 ? "MINIBUS" : "TRUCK", vehicle->side == 0 ? 'A' : 'B');
-
-            if (ferry_load >= FERRY_CAPACITY) {
-                pthread_cond_signal(&ferry_full);
-            }
-
-            pthread_mutex_unlock(&ferry_mutex);
-            break;
-        }
-
-        pthread_mutex_unlock(&ferry_mutex);
-        usleep(100000);
-    }
-}
-
 void* vehicle_fn(void* arg) {
     Vehicle* vehicle = (Vehicle*)arg;
 
@@ -124,7 +84,7 @@ void* vehicle_fn(void* arg) {
     while (1) {
         pthread_mutex_lock(&ferry_mutex);
 
-        if (vehicle->side == ferrySide && ferry_load + vehicle->load <= FERRY_CAPACITY) {
+        if (vehicle->returned == 0 && vehicle->side == ferrySide && ferry_load + vehicle->load <= FERRY_CAPACITY) {
             // Get on the ferry
             ferry[ferryVehicleCount++] = vehicle;
             ferry_load += vehicle->load;
@@ -224,6 +184,34 @@ void* vehicle_fn(void* arg) {
 
     return NULL;
 }
+
+void* ferry_fn(void* arg) {
+    while (1) {
+        pthread_mutex_lock(&ferry_mutex);
+        while (ferry_load < FERRY_CAPACITY) {
+            pthread_cond_wait(&ferry_full, &ferry_mutex);
+        }
+
+        // Ferry Departing
+        printf("Ferry is departing (%c -> %c)", ferrySide == 0 ? 'A' : 'B', ferrySide == 0 ? 'B' : 'A');
+        pthread_mutex_unlock(&ferry_mutex);
+
+        sleep(5);
+
+        pthread_mutex_lock(&ferry_mutex);
+        ferrySide = !ferrySide;
+
+        // Unload the Ferry
+        ferry_load = 0;
+        ferryVehicleCount = 0;
+        pthread_cond_broadcast(&ferry_empty);
+        pthread_mutex_unlock(&ferry_mutex);
+    }
+
+    return NULL;
+}
+
+
 
 int main(void) {
     printf("Hello, World!\n");
