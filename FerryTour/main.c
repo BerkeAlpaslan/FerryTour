@@ -45,15 +45,15 @@ void init_vehicles() {
     int i, j = 0;
 
     for (i = 0; i < 12; i++) {
-        vehicles[j++] = (Vehicle) {j, CAR, 1, SIDE_A, -1, 0};
+        vehicles[j++] = (Vehicle) {j, CAR, 1, SIDE_A, SIDE_B, 0};
     }
 
     for (i = 0; i < 10; i++) {
-        vehicles[j++] = (Vehicle) {j, MINIBUS, 2, SIDE_A, -1, 0};
+        vehicles[j++] = (Vehicle) {j, MINIBUS, 2, SIDE_A, SIDE_B, 0};
     }
 
     for (i = 0; i < 8; i++) {
-        vehicles[j++] = (Vehicle) {j, TRUCK, 3, SIDE_A, -1, 0};
+        vehicles[j++] = (Vehicle) {j, TRUCK, 3, SIDE_A, SIDE_B, 0};
     }
 }
 
@@ -84,7 +84,7 @@ void* vehicle_fn(void* arg) {
     while (1) {
         pthread_mutex_lock(&ferry_mutex);
 
-        if (vehicle->returned == 0 && vehicle->side == ferrySide && ferry_load + vehicle->load <= FERRY_CAPACITY) {
+        if (!vehicle->returned && vehicle->side == ferrySide == SIDE_A && vehicle->targetSide == SIDE_B && ferry_load + vehicle->load <= FERRY_CAPACITY) {
             // Get on the ferry
             ferry[ferryVehicleCount++] = vehicle;
             ferry_load += vehicle->load;
@@ -116,11 +116,12 @@ void* vehicle_fn(void* arg) {
         usleep(100000);
     }
 
-    // Get off the ferry
+    // Get off from the ferry
     while (1) {
         pthread_mutex_lock(&ferry_mutex);
         if (vehicle->side != ferrySide) {
             printf("The vehicle #%d got off from ferry. (Type of Vehicle: %s, Side: %c)", vehicle->id, vehicle->type == 1 ? "CAR" : vehicle->type == 2 ? "MINIBUS" : "TRUCK", ferrySide == 0 ? 'A' : 'B');
+            vehicle->targetSide = vehicle->side;
             vehicle->side = ferrySide;
             pthread_mutex_unlock(&ferry_mutex);
             break;
@@ -129,9 +130,10 @@ void* vehicle_fn(void* arg) {
         usleep(100000);
     }
 
-    // Return
     wait_random();
-    if (!vehicle-> returned) {
+
+    // Return Departure
+    if (!vehicle-> returned && vehicle->side == ferrySide == SIDE_B && vehicle->targetSide == SIDE_A && ferry_load + vehicle->load <= FERRY_CAPACITY) {
         vehicle-> returned = 1;
         vehicle->targetSide = vehicle->side == SIDE_A ? SIDE_B : SIDE_A;
         pass_toll(vehicle);
