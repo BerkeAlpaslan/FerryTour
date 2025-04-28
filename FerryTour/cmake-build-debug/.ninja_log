@@ -1,0 +1,6 @@
+# ninja log v6
+1	27	1745880857216153224	CMakeFiles/FerryTour.dir/main.c.o	56ac372ed24faf60
+1	33	1745880899196766128	CMakeFiles/FerryTour.dir/ferry.c.o	f2dadfd1e004998a
+1	27	1745881048927115407	CMakeFiles/FerryTour.dir/main.c.o	56ac372ed24faf60
+1	32	1745881255070674028	CMakeFiles/FerryTour.dir/ferry.c.o	f2dadfd1e004998a
+32	47	1745881255098674532	FerryTour	d5a08485fe3d2199

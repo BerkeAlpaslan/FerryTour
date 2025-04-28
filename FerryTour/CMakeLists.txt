@@ -3,4 +3,7 @@ project(FerryTour C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(FerryTour main.c)
+add_executable(FerryTour main.c
+        ferry.c
+        ferry.h
+)
