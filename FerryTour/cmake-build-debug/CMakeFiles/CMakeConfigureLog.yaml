@@ -271,3 +271,35 @@ events:
       Running the C compiler's linker: "/usr/bin/ld" "-v"
       GNU ld (GNU Binutils for Debian) 2.44
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/baracuda/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake:108 (try_compile)"
+      - "/home/baracuda/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.31/Modules/CheckCSourceCompiles.cmake:58 (cmake_check_source_compiles)"
+      - "/home/baracuda/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.31/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/home/baracuda/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.31/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "CMakeLists.txt:7 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/baracuda/Documents/OS/FerryTour/FerryTour/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-h6mPYT"
+      binary: "/home/baracuda/Documents/OS/FerryTour/FerryTour/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-h6mPYT"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/baracuda/Documents/OS/FerryTour/FerryTour/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-h6mPYT'
+        
+        Run Build Command(s): /home/baracuda/.local/share/JetBrains/Toolbox/apps/clion/bin/ninja/linux/x64/ninja -v cmTC_ba51a
+        [1/2] /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD  -std=gnu11 -fdiagnostics-color=always -o CMakeFiles/cmTC_ba51a.dir/src.c.o -c /home/baracuda/Documents/OS/FerryTour/FerryTour/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-h6mPYT/src.c
+        [2/2] : && /usr/bin/cc   CMakeFiles/cmTC_ba51a.dir/src.c.o -o cmTC_ba51a   && :
+        
+      exitCode: 0
+...

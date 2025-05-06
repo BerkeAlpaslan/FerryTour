@@ -16,7 +16,8 @@ typedef struct {
     int id;
     int type;
     int load;
-    int side;
+    int initial_side;
+    int current_side;
     int targetSide;
     int returned;
 } Vehicle;
@@ -27,7 +28,7 @@ extern pthread_mutex_t ferry_mutex;
 extern pthread_cond_t ferry_full;
 extern pthread_cond_t ferry_empty;
 
-extern Vehicle* ferry[10];
+extern Vehicle* ferry[FERRY_CAPACITY];
 extern int ferryLoad;
 extern int ferryVehicleCount;
 extern int ferrySide;
@@ -42,7 +43,9 @@ extern int finished;
 
 void init_vehicles();
 void wait_random();
-int existsSuitableVehicle();
+int existsSuitableVehicleOnSide();
+int existsSuitableVehicleOtherSide();
+int all_returned();
 void pass_toll(Vehicle* vehicle);
 void wait_random();
 void wait_square(Vehicle* vehicle);
