@@ -51,6 +51,5 @@ void wait_random();
 void wait_square(Vehicle* vehicle);
 void* boarding_ferry(void* arg);
 void* ferry_departure();
-void* leaving_ferry(Vehicle* vehicle);
 
 #endif

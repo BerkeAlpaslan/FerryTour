@@ -83,9 +83,9 @@ int all_returned() {
 void pass_toll(Vehicle* vehicle) {
     int toll_index = rand() % 2;
     pthread_mutex_lock(&toll_mutex[vehicle->current_side * 2 + toll_index]);
-    printf("The vehicle #%d passed from toll. (Type of Vehicle: %s, Side: %c)",
+    printf("The vehicle #%d passed from toll. (Type of Vehicle: %s, Side: %c)\n",
         vehicle->id, vehicle->type == CAR ? "CAR" : vehicle->type == MINIBUS ? "MINIBUS" : "TRUCK",
-        vehicle->current_side);
+        vehicle->current_side == 0 ? 'A' : 'B');
     wait_random();
     pthread_mutex_unlock(&toll_mutex[vehicle->current_side * 2 + toll_index]);
 }
@@ -125,7 +125,7 @@ void* boarding_ferry(void* arg) {
             ferry[ferryVehicleCount++] = vehicle;
             ferryLoad += vehicle->load;
 
-            printf("The vehicle #%d got on the ferry. (Type of Vehicle: %s, Side: %c)",
+            printf("The vehicle #%d got on the ferry. (Type of Vehicle: %s, Side: %c)\n",
                 vehicle->id, vehicle->type == 1 ? "CAR" : vehicle->type == 2 ? "MINIBUS" : "TRUCK",
                 vehicle->current_side == 0 ? 'A' : 'B');
 
@@ -214,39 +214,6 @@ void* ferry_departure() {
     } else {
         pthread_mutex_unlock(&ferry_mutex);
         usleep(500000);
-    }
-
-    return NULL;
-}
-
-void* leaving_ferry(Vehicle* vehicle) {
-    while (1) {
-        pthread_mutex_lock(&ferry_mutex);
-        if (ferrySide == vehicle->targetSide) {  // Araç hedef yanına ulaştı
-            printf("The vehicle #%d got off from ferry. (Type of Vehicle: %s, Side: %c)\n",
-                vehicle->id,
-                vehicle->type == 1 ? "CAR" : vehicle->type == 2 ? "MINIBUS" : "TRUCK",
-                ferrySide == 0 ? 'A' : 'B');
-
-            vehicle->current_side = ferrySide;
-            if (vehicle->current_side == vehicle->initial_side) {
-                vehicle->returned = 1;
-                printf("Vehicle #%d has returned to its initial side. (Side: %c)\n",
-                    vehicle->id, ferrySide == 0 ? 'A' : 'B');
-            }
-            vehicle->targetSide = vehicle->current_side == SIDE_A ? SIDE_B : SIDE_A;
-
-            pthread_mutex_unlock(&ferry_mutex);
-
-            pthread_mutex_lock(&square_mutex[vehicle->current_side]);
-            square[vehicle->current_side][squareCount[vehicle->current_side]] = vehicle;
-            squareCount[vehicle->current_side]++;
-            pthread_mutex_unlock(&square_mutex[vehicle->current_side]);
-
-            break;
-        }
-        pthread_mutex_unlock(&ferry_mutex);
-        usleep(100000);
     }
 
     return NULL;

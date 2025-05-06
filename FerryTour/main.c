@@ -14,7 +14,7 @@ void* vehicle_lifecycle(void* arg) {
 
     while (!vehicle->returned) {
         boarding_ferry(vehicle);
-        leaving_ferry(vehicle);
+        ferry_departure();
         wait_square(vehicle);
         pass_toll(vehicle);
         wait_square(vehicle);
