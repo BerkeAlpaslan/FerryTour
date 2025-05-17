@@ -7,50 +7,55 @@
 pthread_mutex_t toll_mutex[4];
 pthread_mutex_t square_mutex[2];
 pthread_mutex_t ferry_mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t ferry_full = PTHREAD_COND_INITIALIZER;
-pthread_cond_t ferry_empty = PTHREAD_COND_INITIALIZER;
 
-Vehicle* ferry[FERRY_CAPACITY];
-int ferryLoad = 0;
-int ferryVehicleCount = 0;
-int ferrySide = SIDE_A;
+pthread_cond_t ferry_available = PTHREAD_COND_INITIALIZER;
+pthread_cond_t departure_available = PTHREAD_COND_INITIALIZER;
 
+pthread_t ferry_departure_thread;
+pthread_t vehicleThreads[VEHICLE_COUNT];
+Vehicle vehicles[VEHICLE_COUNT];
+
+Ferry ferry;
+
+Vehicle* ferry_vehicles[FERRY_CAPACITY];
 Vehicle* square[2][VEHICLE_COUNT];
+
 int squareCount[2] = {0,0};
 
-Vehicle vehicles[VEHICLE_COUNT];
-pthread_t vehicleThreads[VEHICLE_COUNT];
+int ferry_available_status = 1;
+int departure_available_status = 0;
 
-int finished = 0;
-
-void init_vehicles() {
+void init_variables() {
     int i;
     int j = 0;
-    int side;
+    int side = rand() % 2;
 
+    // Init ferry
+    ferry = (Ferry) {0, 0, side, !side};
+
+    // Init 12 cars
     for (i = 0; i < 12; i++) {
         side = rand() % 2;
-        vehicles[j++] = (Vehicle) {j, CAR, 1, side, side, side == 0 ? SIDE_B : SIDE_A, 0};
+        vehicles[j++] = (Vehicle) {j, CAR, 1, side, side, side == 0 ? SIDE_B : SIDE_A, 0, 0};
     }
 
+    // Init 10 minibuses
     for (i = 0; i < 10; i++) {
         side = rand() % 2;
-        vehicles[j++] = (Vehicle) {j, MINIBUS, 2, side, side, side == 0 ? SIDE_B : SIDE_A, 0};
+        vehicles[j++] = (Vehicle) {j, MINIBUS, 2, side, side, side == 0 ? SIDE_B : SIDE_A, 0, 0};
     }
 
+    // Init 8 trucks
     for (i = 0; i < 8; i++) {
         side = rand() % 2;
-        vehicles[j++] = (Vehicle) {j, TRUCK, 3, side, side, side == 0 ? SIDE_B : SIDE_A, 0};
+        vehicles[j++] = (Vehicle) {j, TRUCK, 3, side, side, side == 0 ? SIDE_B : SIDE_A, 0, 0};
     }
 }
 
-void wait_random() {
-    usleep((rand() % 500 + 200) * 1000);
-}
-
+/*
 int existsSuitableVehicleOnSide() {
-    for (int i = 0; i < squareCount[ferrySide]; i++) {
-        if (square[ferrySide][i]->load + ferryLoad <= FERRY_CAPACITY && square[ferrySide][i]->returned == 0) {
+    for (int i = 0; i < squareCount[ferry.current_side]; i++) {
+        if (square[ferry.current_side][i]->load + ferry.load <= FERRY_CAPACITY && !square[ferry.current_side][i]->returned) {
             return 1;
         }
     }
@@ -58,162 +63,297 @@ int existsSuitableVehicleOnSide() {
 }
 
 int existsSuitableVehicleOtherSide() {
-    int otherSide = !ferrySide;
-
-    if (ferryLoad == 0 && ferryVehicleCount == 0 && squareCount[otherSide] > 0) {
-        for (int i = 0; i < squareCount[otherSide]; i++) {
-            if (square[otherSide][i]->returned == 0) {
+    if (ferry.load == 0 && ferry.vehicle_count == 0 && squareCount[ferry.target_side] > 0) {
+        for (int i = 0; i < squareCount[ferry.target_side]; i++) {
+            if (!square[ferry.target_side][i]->returned) {
                 return 1;
             }
         }
     }
-
     return 0;
+}
+*/
+
+int existsSuitableVehicleOnSide() {
+    int result = 0;
+
+    pthread_mutex_lock(&square_mutex[ferry.current_side]);
+
+    for (int i = 0; i < squareCount[ferry.current_side]; i++) {
+        if (square[ferry.current_side][i] != NULL &&
+            square[ferry.current_side][i]->load + ferry.load <= FERRY_CAPACITY &&
+            !square[ferry.current_side][i]->returned &&
+            !square[ferry.current_side][i]->on_ferry) {
+            result = 1;
+            break;
+            }
+    }
+
+    pthread_mutex_unlock(&square_mutex[ferry.current_side]);
+    return result;
+}
+
+int existsSuitableVehicleOtherSide() {
+    int result = 0;
+
+    pthread_mutex_lock(&square_mutex[ferry.target_side]);
+
+    if (ferry.load == 0 && ferry.vehicle_count == 0 && squareCount[ferry.target_side] > 0) {
+        for (int i = 0; i < squareCount[ferry.target_side]; i++) {
+            if (square[ferry.target_side][i] != NULL &&
+                !square[ferry.target_side][i]->returned &&
+                !square[ferry.target_side][i]->on_ferry) {
+                result = 1;
+                break;
+                }
+        }
+    }
+
+    pthread_mutex_unlock(&square_mutex[ferry.target_side]);
+    return result;
 }
 
 int all_returned() {
     for (int i = 0; i < VEHICLE_COUNT; i++) {
-        if (vehicles[i].returned == 0) {
+        if (!vehicles[i].returned) {
             return 0;
         }
     }
     return 1;
 }
 
+void swap_vehicle_side(Vehicle* vehicle) {
+    if (vehicle != NULL) {
+        int temp;
+        temp = vehicle->current_side;
+        vehicle->current_side = vehicle->target_side;
+        vehicle->target_side = temp;
+
+        if (vehicle->current_side == vehicle->initial_side) {
+            vehicle->returned = 1;
+            printf("Vehicle #%d has returned to its initial side. (Side: %c)\n",
+                vehicle->id, vehicle->initial_side == SIDE_A ? 'A' : 'B');
+        }
+    }
+}
+
+void swap_ferry_side(Ferry* ferry) {
+    if (ferry != NULL) {
+        int temp;
+        temp = ferry->current_side;
+        ferry->current_side = ferry->target_side;
+        ferry->target_side = temp;
+    }
+}
+
 void pass_toll(Vehicle* vehicle) {
     int toll_index = rand() % 2;
+
     pthread_mutex_lock(&toll_mutex[vehicle->current_side * 2 + toll_index]);
+
     printf("The vehicle #%d passed from toll. (Type of Vehicle: %s, Side: %c)\n",
         vehicle->id, vehicle->type == CAR ? "CAR" : vehicle->type == MINIBUS ? "MINIBUS" : "TRUCK",
         vehicle->current_side == 0 ? 'A' : 'B');
-    wait_random();
+
+    usleep(10000);
+
     pthread_mutex_unlock(&toll_mutex[vehicle->current_side * 2 + toll_index]);
 }
 
 void wait_square(Vehicle* vehicle) {
+    /*
     pthread_mutex_lock(&square_mutex[vehicle->current_side]);
+
     square[vehicle->current_side][squareCount[vehicle->current_side]++] = vehicle;
     printf("Vehicle #%d waiting in square. (Type: %s, Side: %c)\n",
         vehicle->id,
         vehicle->type == CAR ? "CAR" : vehicle->type == MINIBUS ? "MINIBUS" : "TRUCK",
         vehicle->current_side == SIDE_A ? 'A' : 'B');
+    usleep(10000);
+
+    pthread_mutex_unlock(&square_mutex[vehicle->current_side]);
+    */
+
+    // Null kontrolü ekle
+    if (vehicle == NULL) {
+        printf("Error: NULL vehicle tried to enter the square!\n");
+        return;
+    }
+
+    // Araç tarafını kontrol et
+    if (vehicle->current_side != SIDE_A && vehicle->current_side != SIDE_B) {
+        printf("Error: Vehicle #%d has invalid side: %d\n", vehicle->id, vehicle->current_side);
+        return;
+    }
+
+    pthread_mutex_lock(&square_mutex[vehicle->current_side]);
+
+    // Dizi sınırlarını kontrol et
+    if (squareCount[vehicle->current_side] < VEHICLE_COUNT * 100) {
+        // Aracı meydana ekle
+        square[vehicle->current_side][squareCount[vehicle->current_side]] = vehicle;
+        printf("Vehicle #%d waiting in square. (Type: %s, Side: %c)\n",
+            vehicle->id,
+            vehicle->type == CAR ? "CAR" : vehicle->type == MINIBUS ? "MINIBUS" : "TRUCK",
+            vehicle->current_side == SIDE_A ? 'A' : 'B');
+
+        // Sayıyı artır
+        squareCount[vehicle->current_side]++;
+    } else {
+        printf("Error: Square is full on side %c, cannot add vehicle #%d\n",
+            vehicle->current_side == SIDE_A ? 'A' : 'B', vehicle->id);
+    }
+
+    usleep(10000);
     pthread_mutex_unlock(&square_mutex[vehicle->current_side]);
 }
 
-void* boarding_ferry(void* arg) {
-    Vehicle* vehicle = (Vehicle*)arg;
-    int boarded = 0;
+void leaving_ferry() {
+    for (int i = 0; i < ferry.vehicle_count; i++) {
+        Vehicle* vehicle = ferry_vehicles[i];
+        if (vehicle != NULL) {
+            printf("Vehicle #%d got off from ferry. (Type: %s, Side: %c)\n",
+                vehicle->id,
+                vehicle->type == CAR ? "CAR" : vehicle->type == MINIBUS ? "MINIBUS" : "TRUCK",
+                ferry.current_side == SIDE_A ? 'A' : 'B');
 
-    while (!boarded) {
-        pthread_mutex_lock(&ferry_mutex);
-        if (!vehicle->returned && vehicle->current_side == ferrySide && vehicle->targetSide != ferrySide && ferryLoad + vehicle->load <= FERRY_CAPACITY) {
-            pthread_mutex_lock(&square_mutex[vehicle->current_side]);
-            for (int i = 0; i < squareCount[vehicle->current_side]; i++) {
-                if (square[vehicle->current_side][i] == vehicle) {
-                    for (int j = i; j < squareCount[vehicle->current_side] - 1; j++) {
-                        square[vehicle->current_side][j] = square[vehicle->current_side][j + 1];
-                    }
-                    if (vehicle->targetSide == SIDE_A) {
-                        vehicle->returned = 1;
-                    }
-                    squareCount[vehicle->current_side]--;
-                    break;
-                }
-            }
-            pthread_mutex_unlock(&square_mutex[vehicle->current_side]);
-
-            ferry[ferryVehicleCount++] = vehicle;
-            ferryLoad += vehicle->load;
-
-            printf("The vehicle #%d got on the ferry. (Type of Vehicle: %s, Side: %c)\n",
-                vehicle->id, vehicle->type == 1 ? "CAR" : vehicle->type == 2 ? "MINIBUS" : "TRUCK",
-                vehicle->current_side == 0 ? 'A' : 'B');
-
-            if (ferryLoad == FERRY_CAPACITY || (ferryLoad >= 0 && !existsSuitableVehicleOnSide())) {
-                pthread_cond_signal(&ferry_full);
-            }
-
-            boarded = 1;
-
-            pthread_mutex_unlock(&ferry_mutex);
-            break;
-        }
-
-        pthread_mutex_unlock(&ferry_mutex);
-
-        if (!boarded) {
-            usleep(100000);
+            swap_vehicle_side(vehicle);
+            vehicle->on_ferry = 0;
+            ferry_vehicles[i] = NULL;
         }
     }
 
-    return NULL;
+    ferry.load = 0;
+    ferry.vehicle_count = 0;
+}
+
+void boarding_ferry(void* arg) {
+    Vehicle* vehicle = (Vehicle*) arg;
+
+    pthread_mutex_lock(&ferry_mutex);
+
+    while (!ferry_available_status) {
+        pthread_cond_wait(&ferry_available, &ferry_mutex);
+    }
+
+    ferry_available_status = 0;
+    //departure_available_status = 0;
+
+    if (!vehicle->returned &&
+        vehicle->current_side == ferry.current_side &&
+        vehicle->target_side == ferry.target_side &&
+        ferry.load + vehicle->load <= FERRY_CAPACITY) {
+
+        pthread_mutex_lock(&square_mutex[vehicle->current_side]);
+
+        for (int i = 0; i < squareCount[vehicle->current_side]; i++) {
+            if (square[vehicle->current_side][i] == vehicle) {
+                for (int j = i; j < squareCount[vehicle->current_side] - 1; j++) {
+                    square[vehicle->current_side][j] = square[vehicle->current_side][j + 1];
+                }
+                square[vehicle->current_side][squareCount[vehicle->current_side] - 1] = NULL;
+                squareCount[vehicle->current_side]--;
+
+                ferry_vehicles[ferry.vehicle_count++] = vehicle;
+                ferry.load += vehicle->load;
+
+                vehicle->on_ferry = 1;
+
+                printf("The vehicle #%d got on the ferry. (Type of Vehicle: %s, Side: %c)\n",
+                    vehicle->id, vehicle->type == 1 ? "CAR" : vehicle->type == 2 ? "MINIBUS" : "TRUCK",
+                    vehicle->current_side == 0 ? 'A' : 'B');
+                break;
+            }
+        }
+
+        pthread_mutex_unlock(&square_mutex[vehicle->current_side]);
+
+        usleep(50000);
+
+        if (ferry.load == FERRY_CAPACITY ||
+            (ferry.load >= 0 && !existsSuitableVehicleOnSide())) {
+            departure_available_status = 1;
+            pthread_cond_signal(&departure_available);
+            }
+        }
+
+    ferry_available_status = 1;
+    pthread_cond_broadcast(&ferry_available);
+    pthread_mutex_unlock(&ferry_mutex);
 }
 
 void* ferry_departure() {
     pthread_mutex_lock(&ferry_mutex);
 
-    if (ferryLoad == 0) {
-        if (squareCount[ferrySide] == 0 && !existsSuitableVehicleOnSide() && existsSuitableVehicleOtherSide()) {
-            printf("Ferry is departing EMPTY from Side %c to Side %c\n",
-                ferrySide == SIDE_A ? 'A' : 'B',
-                ferrySide == SIDE_A ? 'B' : 'A');
+    while (!all_returned()) {
 
-            pthread_mutex_unlock(&ferry_mutex);
-            sleep(5);
-            pthread_mutex_lock(&ferry_mutex);
-            ferrySide = !ferrySide;
-            pthread_mutex_unlock(&ferry_mutex);
-
-            return NULL;
-        } else if (squareCount[ferrySide] > 0 && existsSuitableVehicleOnSide()) {
-            while (ferryVehicleCount == 0 && squareCount[ferrySide] > 0) {
-                pthread_mutex_unlock(&ferry_mutex);
-                usleep(500000);
-                pthread_mutex_lock(&ferry_mutex);
-            }
-        } else {
-            pthread_mutex_unlock(&ferry_mutex);
-            return NULL;
+        while (!departure_available_status) {
+            pthread_cond_wait(&departure_available, &ferry_mutex);
         }
+
+        departure_available_status = 0;
+
+        if (ferry.vehicle_count == 0 && !existsSuitableVehicleOnSide() && !existsSuitableVehicleOtherSide()) {
+            printf("Ferry is departing EMPTY from Side %c to Side %c\n",
+                    ferry.current_side == SIDE_A ? 'A' : 'B',
+                    ferry.target_side == SIDE_A ? 'A' : 'B');
+
+            ferry_available_status = 0;
+
+            swap_ferry_side(&ferry);
+
+            usleep(500000);
+
+            ferry_available_status = 1;
+            pthread_cond_broadcast(&ferry_available);
+            pthread_mutex_unlock(&ferry_mutex);
+            usleep(50000);
+            continue;
+        }
+
+        if (ferry.vehicle_count > 0 && (ferry.load <= FERRY_CAPACITY || (!existsSuitableVehicleOnSide() && !existsSuitableVehicleOtherSide()))) {
+            printf("Ferry is departing from Side %c to Side %c with %d vehicles (Load: %d/%d)\n",
+                ferry.current_side == SIDE_A ? 'A' : 'B',
+                ferry.target_side == SIDE_A ? 'A' : 'B',
+                ferry.vehicle_count, ferry.load, FERRY_CAPACITY);
+
+            ferry_available_status = 0;
+
+            swap_ferry_side(&ferry);
+            usleep(500000);
+            leaving_ferry();
+
+            ferry_available_status = 1;
+            pthread_cond_broadcast(&ferry_available);
+            pthread_mutex_unlock(&ferry_mutex);
+            usleep(50000);
+            continue;
+        }
+
+
+        ferry_available_status = 1;
+        pthread_cond_broadcast(&ferry_available);
+        pthread_mutex_unlock(&ferry_mutex);
+
+        usleep(200000);
     }
 
-    if (ferryVehicleCount > 0 && (ferryLoad == FERRY_CAPACITY || !existsSuitableVehicleOnSide())) {
-        printf("Ferry is departing from Side %c to Side %c with %d vehicles (Load: %d/%d)\n",
-            ferrySide == SIDE_A ? 'A' : 'B',
-            ferrySide == SIDE_A ? 'B' : 'A',
-            ferryVehicleCount, ferryLoad, FERRY_CAPACITY);
+    printf("All vehicles have returned. Ferry service ending.\n");
 
-        pthread_mutex_unlock(&ferry_mutex);
-        sleep(5);
-        pthread_mutex_lock(&ferry_mutex);
-        ferrySide = !ferrySide;
+    return NULL;
+}
 
-        for (int i = 0; i < ferryVehicleCount; i++) {
-            Vehicle* v = ferry[i];
-            printf("Vehicle #%d got off from ferry. (Type: %s, Side: %c)\n",
-                v->id,
-                v->type == CAR ? "CAR" : v->type == MINIBUS ? "MINIBUS" : "TRUCK",
-                ferrySide == SIDE_A ? 'A' : 'B');
+void* vehicle_lifecycle(void* arg) {
+    Vehicle* vehicle = (Vehicle*)arg;
 
-            v->current_side = ferrySide;
-
-            if (v->current_side == v->initial_side) {
-                v->returned = 1;
-                printf("Vehicle #%d has returned to its initial side. (Side: %c)\n",
-                    v->id, ferrySide == SIDE_A ? 'A' : 'B');
-            }
-
-            v->targetSide = v->current_side == SIDE_A ? SIDE_B : SIDE_A;
+    while (!vehicle->returned) {
+        if (!vehicle->on_ferry) {
+            pass_toll(vehicle);
+            wait_square(vehicle);
+            boarding_ferry(vehicle);
         }
 
-        ferryLoad = 0;
-        ferryVehicleCount = 0;
-
-        pthread_cond_broadcast(&ferry_empty);
-        pthread_mutex_unlock(&ferry_mutex);
-    } else {
-        pthread_mutex_unlock(&ferry_mutex);
-        usleep(500000);
+        usleep(50000);
     }
 
     return NULL;
