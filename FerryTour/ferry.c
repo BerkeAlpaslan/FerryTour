@@ -81,6 +81,7 @@ int existsSuitableVehicleOnSide() {
 
     for (int i = 0; i < square_count[ferry.current_side]; i++) {
         if (square[ferry.current_side][i] != NULL &&
+            square[ferry.current_side][i]->target_side == ferry.target_side &&
             square[ferry.current_side][i]->load + ferry.load <= FERRY_CAPACITY &&
             !square[ferry.current_side][i]->returned &&
             !square[ferry.current_side][i]->on_ferry) {
@@ -248,7 +249,7 @@ void boarding_ferry(void* arg) {
 
     // Check if ferry should depart
     if (ferry.load == FERRY_CAPACITY ||
-        (ferry.load > 0 && !existsSuitableVehicleOnSide())) {
+        (ferry.load >= 0 && !existsSuitableVehicleOnSide())) {
         departure_available_status = 1;
         pthread_cond_broadcast(&departure_available);
     }
