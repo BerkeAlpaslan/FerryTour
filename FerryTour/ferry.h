@@ -45,7 +45,7 @@ extern pthread_cond_t departure_available;
 extern Ferry ferry;
 extern Vehicle* ferry_vehicles[FERRY_CAPACITY];
 
-extern Vehicle* square[2][VEHICLE_COUNT*100000];
+extern Vehicle* square[2][VEHICLE_COUNT];
 extern int square_count[2];
 
 extern pthread_t ferry_departure_thread;
@@ -67,5 +67,4 @@ void boarding_ferry(void* arg);
 void leaving_ferry();
 void* ferry_departure();
 void* vehicle_lifecycle(void* arg);
-
 #endif

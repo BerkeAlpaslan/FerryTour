@@ -18,7 +18,7 @@ Vehicle vehicles[VEHICLE_COUNT];
 Ferry ferry;
 
 Vehicle* ferry_vehicles[FERRY_CAPACITY];
-Vehicle* square[2][VEHICLE_COUNT*100000];
+Vehicle* square[2][VEHICLE_COUNT];
 
 int square_count[2] = {0,0};
 
@@ -51,28 +51,6 @@ void init_variables() {
         vehicles[j++] = (Vehicle) {j, TRUCK, 3, side, side, side == 0 ? SIDE_B : SIDE_A, 0, 0};
     }
 }
-
-/*
-int existsSuitableVehicleOnSide() {
-    for (int i = 0; i < square_count[ferry.current_side]; i++) {
-        if (square[ferry.current_side][i]->load + ferry.load <= FERRY_CAPACITY && !square[ferry.current_side][i]->returned) {
-            return 1;
-        }
-    }
-    return 0;
-}
-
-int existsSuitableVehicleOtherSide() {
-    if (ferry.load == 0 && ferry.vehicle_count == 0 && square_count[ferry.target_side] > 0) {
-        for (int i = 0; i < square_count[ferry.target_side]; i++) {
-            if (!square[ferry.target_side][i]->returned) {
-                return 1;
-            }
-        }
-    }
-    return 0;
-}
-*/
 
 int existsSuitableVehicleOnSide() {
     int result = 0;
@@ -324,12 +302,23 @@ void* ferry_departure() {
 
 void* vehicle_lifecycle(void* arg) {
     Vehicle* vehicle = (Vehicle*)arg;
+    int in_square = 0; // Araç meydanda mı?
 
     while (!vehicle->returned) {
         if (!vehicle->on_ferry) {
-            pass_toll(vehicle);
-            wait_square(vehicle);
-            boarding_ferry(vehicle);
+            if (!in_square) {
+                pass_toll(vehicle);
+                wait_square(vehicle);
+                in_square = 1;
+            } else {
+                boarding_ferry(vehicle);
+                // boarding_ferry başarılı olursa, on_ferry 1 olacak
+                // Eğer başarısız olursa, in_square değerini koruyoruz
+            }
+        } else {
+            // Araç feribotta, in_square'i sıfırla ki
+            // karşı tarafa vardığında yeniden gişeye girebilsin
+            in_square = 0;
         }
 
         usleep(50000);
