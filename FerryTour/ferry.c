@@ -188,6 +188,7 @@ void boarding_ferry(void* arg) {
     if (!vehicle->returned &&
         vehicle->current_side == ferry.current_side &&
         vehicle->target_side == ferry.target_side &&
+        !vehicle->on_ferry &&
         ferry.load + vehicle->load <= FERRY_CAPACITY) {
 
         pthread_mutex_lock(&square_mutex[vehicle->current_side]);
@@ -240,6 +241,7 @@ void boarding_ferry(void* arg) {
 
 void* ferry_departure() {
     while (!all_returned()) {
+        usleep(1000000);
         pthread_mutex_lock(&ferry_mutex);
 
         // Check if ferry should depart
@@ -287,7 +289,7 @@ void* ferry_departure() {
 
             departure_available_status = 0;
             pthread_mutex_unlock(&ferry_mutex);
-            usleep(100000);
+            usleep(1000000);
         }
 
         // Check if simulation is complete
