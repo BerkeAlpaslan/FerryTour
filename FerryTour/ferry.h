@@ -21,6 +21,8 @@ typedef struct {
     int target_side;
     int on_ferry;
     int returned;
+    double queue_entry_time;  // Time when vehicle entered the queue
+    double boarding_time;     // Time when vehicle boarded the ferry
 } Vehicle;
 
 typedef struct {
@@ -30,10 +32,19 @@ typedef struct {
     int target_side;
 } Ferry;
 
+// Trip information structure
 typedef struct {
-    Vehicle* vehicle;
-    struct Node* next;
-} Node;
+    int trip_number;
+    int vehicle_count;
+    int total_load;
+    int remaining_capacity;
+    Vehicle* vehicles[FERRY_CAPACITY];
+    double trip_duration;
+    int current_side;  // Side where the trip started
+    int target_side;   // Side where the trip ended
+} TripInfo;
+
+extern TripInfo trip_history[100];
 
 extern pthread_mutex_t toll_mutex[4];
 extern pthread_mutex_t square_mutex[2];
@@ -55,6 +66,8 @@ extern Vehicle vehicles[VEHICLE_COUNT];
 extern int ferry_available_status;
 extern int departure_available_status;
 
+const char* get_vehicle_type(int type);
+double get_current_time();
 void init_variables();
 int existsSuitableVehicleOnSide();
 int existsSuitableVehicleOtherSide();
