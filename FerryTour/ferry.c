@@ -183,9 +183,9 @@ void pass_toll(Vehicle* vehicle) {
 
     pthread_mutex_lock(&toll_mutex[vehicle->current_side * 2 + toll_index]);
 
-    printf("[VEHICLE #%2d][%s] Passing through toll (Side: %c, Toll: %d)\n",
+    printf("[VEHICLE #%2d][%s] Passing through toll (Side: %c, Toll: %c-%d)\n",
         vehicle->id + 1, get_vehicle_type(vehicle->type),
-        vehicle->current_side == 0 ? 'A' : 'B', toll_index);
+        vehicle->current_side == 0 ? 'A' : 'B', vehicle->current_side == 0 ? 'A' : 'B', toll_index + 1);
 
     usleep(10000);
 
@@ -309,11 +309,12 @@ void boarding_ferry(void* arg) {
                         !square[ferry.current_side][i]->returned &&
                         !square[ferry.current_side][i]->on_ferry) {
                         // Case 2: Vehicle cannot fit
-                        printf("\n[FERRY] Vehicle #%d (%s) cannot fit: %d + %d > %d (Ferry Capacity) → Departure triggered\n",
+                        printf("\n[FERRY] Vehicle #%d (%s) cannot fit: %d + %d = %d > %d (Ferry Capacity) → Departure triggered\n",
                             square[ferry.current_side][i]->id + 1,
                             get_vehicle_type(square[ferry.current_side][i]->type),
                             ferry.load,
                             square[ferry.current_side][i]->load,
+                            ferry.load + square[ferry.current_side][i]->load,
                             FERRY_CAPACITY);
                         departure_triggered = 1;
                         found_unfit = 1;

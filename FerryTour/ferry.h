@@ -46,7 +46,7 @@ typedef struct {
 
 extern TripInfo trip_history[100];
 
-extern pthread_mutex_t toll_mutex[4];
+extern pthread_mutex_t toll_mutex[4]; // toll_mutex[0] and toll_mutex[1] for Side A, toll_mutex[2] and toll_mutex[3] for Side B
 extern pthread_mutex_t square_mutex[2];
 extern pthread_mutex_t ferry_mutex;
 
