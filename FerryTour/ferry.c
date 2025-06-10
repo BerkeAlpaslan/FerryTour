@@ -5,6 +5,14 @@
 #include <unistd.h>
 #include <sys/time.h>
 
+/*
+ *
+ *
+ * 210316016 - Berke Alpaslan - Night Education
+ *
+ *
+*/
+
 pthread_mutex_t toll_mutex[4];
 pthread_mutex_t square_mutex[2];
 pthread_mutex_t ferry_mutex = PTHREAD_MUTEX_INITIALIZER;

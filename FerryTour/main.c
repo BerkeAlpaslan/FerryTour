@@ -6,6 +6,14 @@
 #include <pthread.h>
 #include <time.h>
 
+/*
+ *
+ *
+ * 210316016 - Berke Alpaslan - Night Education
+ *
+ *
+*/
+
 int main() {
     srand(time(NULL));
 
