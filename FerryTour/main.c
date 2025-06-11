@@ -29,7 +29,6 @@ int main() {
         pthread_mutex_init(&square_mutex[i], NULL);
     }
 
-    // Araç thread'lerini başlat
     for (int i = 0; i < VEHICLE_COUNT; i++) {
         pthread_create(&vehicleThreads[i], NULL, vehicle_lifecycle, &vehicles[i]);
     }
