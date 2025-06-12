@@ -1,3 +1,0 @@
-/home/baracuda/Documents/OS/FerryTour/FerryTour/cmake-build-debug/CMakeFiles/FerryTour.dir
-/home/baracuda/Documents/OS/FerryTour/FerryTour/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/baracuda/Documents/OS/FerryTour/FerryTour/cmake-build-debug/CMakeFiles/rebuild_cache.dir

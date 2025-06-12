@@ -1,0 +1,531 @@
+210316016 - Berke Alpaslan - Night Education
+
+[FERRY] Initialized (Current Side: B, Target Side: A)
+[VEHICLE # 1][CAR] Created (Side: A)
+[VEHICLE # 2][CAR] Created (Side: A)
+[VEHICLE # 3][CAR] Created (Side: B)
+[VEHICLE # 4][CAR] Created (Side: B)
+[VEHICLE # 5][CAR] Created (Side: A)
+[VEHICLE # 6][CAR] Created (Side: A)
+[VEHICLE # 7][CAR] Created (Side: A)
+[VEHICLE # 8][CAR] Created (Side: B)
+[VEHICLE # 9][CAR] Created (Side: B)
+[VEHICLE #10][CAR] Created (Side: B)
+[VEHICLE #11][CAR] Created (Side: A)
+[VEHICLE #12][CAR] Created (Side: B)
+[VEHICLE #13][MINIBUS] Created (Side: B)
+[VEHICLE #14][MINIBUS] Created (Side: B)
+[VEHICLE #15][MINIBUS] Created (Side: A)
+[VEHICLE #16][MINIBUS] Created (Side: B)
+[VEHICLE #17][MINIBUS] Created (Side: A)
+[VEHICLE #18][MINIBUS] Created (Side: A)
+[VEHICLE #19][MINIBUS] Created (Side: A)
+[VEHICLE #20][MINIBUS] Created (Side: B)
+[VEHICLE #21][MINIBUS] Created (Side: A)
+[VEHICLE #22][MINIBUS] Created (Side: A)
+[VEHICLE #23][TRUCK] Created (Side: B)
+[VEHICLE #24][TRUCK] Created (Side: B)
+[VEHICLE #25][TRUCK] Created (Side: B)
+[VEHICLE #26][TRUCK] Created (Side: A)
+[VEHICLE #27][TRUCK] Created (Side: A)
+[VEHICLE #28][TRUCK] Created (Side: B)
+[VEHICLE #29][TRUCK] Created (Side: A)
+[VEHICLE #30][TRUCK] Created (Side: B)
+[VEHICLE # 1][CAR] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE # 2][CAR] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE # 3][CAR] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE # 4][CAR] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE # 1][CAR] Waiting in square (Side: A, Square Queue Length: 1)
+[VEHICLE # 5][CAR] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE # 8][CAR] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE # 9][CAR] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE # 4][CAR] Waiting in square (Side: B, Square Queue Length: 1)
+[VEHICLE #15][MINIBUS] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE # 2][CAR] Waiting in square (Side: A, Square Queue Length: 2)
+[VEHICLE #13][MINIBUS] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE # 6][CAR] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #10][CAR] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE # 3][CAR] Waiting in square (Side: B, Square Queue Length: 2)
+[VEHICLE #17][MINIBUS] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE # 5][CAR] Waiting in square (Side: A, Square Queue Length: 3)
+[VEHICLE #14][MINIBUS] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE # 9][CAR] Waiting in square (Side: B, Square Queue Length: 3)
+[VEHICLE #12][CAR] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE # 7][CAR] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #18][MINIBUS] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE #14][MINIBUS] Waiting in square (Side: B, Square Queue Length: 4)
+[VEHICLE #16][MINIBUS] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE #15][MINIBUS] Waiting in square (Side: A, Square Queue Length: 4)
+[VEHICLE #25][TRUCK] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE #11][CAR] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #19][MINIBUS] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE #16][MINIBUS] Waiting in square (Side: B, Square Queue Length: 5)
+[VEHICLE #22][MINIBUS] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE #20][MINIBUS] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE #11][CAR] Waiting in square (Side: A, Square Queue Length: 5)
+[VEHICLE #28][TRUCK] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE #21][MINIBUS] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #13][MINIBUS] Waiting in square (Side: B, Square Queue Length: 6)
+[VEHICLE #23][TRUCK] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE #27][TRUCK] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE #17][MINIBUS] Waiting in square (Side: A, Square Queue Length: 6)
+[VEHICLE #30][TRUCK] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE #26][TRUCK] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE # 8][CAR] Waiting in square (Side: B, Square Queue Length: 7)
+[VEHICLE #24][TRUCK] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE #29][TRUCK] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #27][TRUCK] Waiting in square (Side: A, Square Queue Length: 7)
+[VEHICLE #12][CAR] Waiting in square (Side: B, Square Queue Length: 8)
+[VEHICLE #18][MINIBUS] Waiting in square (Side: A, Square Queue Length: 8)
+[VEHICLE #10][CAR] Waiting in square (Side: B, Square Queue Length: 9)
+[VEHICLE #19][MINIBUS] Waiting in square (Side: A, Square Queue Length: 9)
+[VEHICLE #25][TRUCK] Waiting in square (Side: B, Square Queue Length: 10)
+[VEHICLE # 6][CAR] Waiting in square (Side: A, Square Queue Length: 10)
+[VEHICLE #20][MINIBUS] Waiting in square (Side: B, Square Queue Length: 11)
+[VEHICLE #22][MINIBUS] Waiting in square (Side: A, Square Queue Length: 11)
+[VEHICLE #28][TRUCK] Waiting in square (Side: B, Square Queue Length: 12)
+[VEHICLE #21][MINIBUS] Waiting in square (Side: A, Square Queue Length: 12)
+[VEHICLE # 4][CAR] Boarded ferry (Side: B, Waiting Time: 0.121 sec, Ferry Load: 1/20)
+[VEHICLE #26][TRUCK] Waiting in square (Side: A, Square Queue Length: 13)
+[VEHICLE #23][TRUCK] Waiting in square (Side: B, Square Queue Length: 12)
+[VEHICLE # 7][CAR] Waiting in square (Side: A, Square Queue Length: 14)
+[VEHICLE #30][TRUCK] Waiting in square (Side: B, Square Queue Length: 13)
+[VEHICLE #29][TRUCK] Waiting in square (Side: A, Square Queue Length: 15)
+[VEHICLE #24][TRUCK] Waiting in square (Side: B, Square Queue Length: 14)
+[VEHICLE # 3][CAR] Boarded ferry (Side: B, Waiting Time: 0.161 sec, Ferry Load: 2/20)
+[VEHICLE #14][MINIBUS] Boarded ferry (Side: B, Waiting Time: 0.191 sec, Ferry Load: 4/20)
+[VEHICLE #13][MINIBUS] Boarded ferry (Side: B, Waiting Time: 0.221 sec, Ferry Load: 6/20)
+[VEHICLE #10][CAR] Boarded ferry (Side: B, Waiting Time: 0.241 sec, Ferry Load: 7/20)
+[VEHICLE #20][MINIBUS] Boarded ferry (Side: B, Waiting Time: 0.271 sec, Ferry Load: 9/20)
+[VEHICLE # 9][CAR] Boarded ferry (Side: B, Waiting Time: 0.402 sec, Ferry Load: 10/20)
+[VEHICLE #23][TRUCK] Boarded ferry (Side: B, Waiting Time: 0.351 sec, Ferry Load: 13/20)
+[VEHICLE #24][TRUCK] Boarded ferry (Side: B, Waiting Time: 0.381 sec, Ferry Load: 16/20)
+[VEHICLE #12][CAR] Boarded ferry (Side: B, Waiting Time: 0.502 sec, Ferry Load: 17/20)
+[VEHICLE #28][TRUCK] Boarded ferry (Side: B, Waiting Time: 0.512 sec, Ferry Load: 20/20)
+
+[FERRY] Ferry is full (20/20) → Departure triggered
+
+===============================================
+[FERRY] TRIP 1 DEPARTING!
+  From Side: B → To Side: A
+  Vehicles on board: 11
+  Total load: 20/20 units
+  Remaining capacity: 0 units
+
+  VEHICLES ON BOARD:
+    1. Vehicle # 4 (CAR) - 1 units
+    2. Vehicle # 3 (CAR) - 1 units
+    3. Vehicle #14 (MINIBUS) - 2 units
+    4. Vehicle #13 (MINIBUS) - 2 units
+    5. Vehicle #10 (CAR) - 1 units
+    6. Vehicle #20 (MINIBUS) - 2 units
+    7. Vehicle # 9 (CAR) - 1 units
+    8. Vehicle #23 (TRUCK) - 3 units
+    9. Vehicle #24 (TRUCK) - 3 units
+    10. Vehicle #12 (CAR) - 1 units
+    11. Vehicle #28 (TRUCK) - 3 units
+===============================================
+
+--- UNLOADING VEHICLES ---
+[VEHICLE # 4][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.369 sec)
+[VEHICLE # 3][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.319 sec)
+[VEHICLE #14][MINIBUS] Got off from ferry (Side: A, Ferry Travel Time: 1.269 sec)
+[VEHICLE #13][MINIBUS] Got off from ferry (Side: A, Ferry Travel Time: 1.219 sec)
+[VEHICLE #10][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.168 sec)
+[VEHICLE #20][MINIBUS] Got off from ferry (Side: A, Ferry Travel Time: 1.118 sec)
+[VEHICLE # 9][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.068 sec)
+[VEHICLE #23][TRUCK] Got off from ferry (Side: A, Ferry Travel Time: 1.018 sec)
+[VEHICLE #24][TRUCK] Got off from ferry (Side: A, Ferry Travel Time: 0.968 sec)
+[VEHICLE #12][CAR] Got off from ferry (Side: A, Ferry Travel Time: 0.918 sec)
+[VEHICLE #28][TRUCK] Got off from ferry (Side: A, Ferry Travel Time: 0.868 sec)
+--- UNLOADING COMPLETE ---
+
+[FERRY] Trip 1 completed (Duration: 0.500 sec)
+
+===============================================
+[VEHICLE #27][TRUCK] Boarded ferry (Side: A, Waiting Time: 1.430 sec, Ferry Load: 3/20)
+[VEHICLE #24][TRUCK] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE #28][TRUCK] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #24][TRUCK] Waiting in square (Side: A, Square Queue Length: 15)
+[VEHICLE #13][MINIBUS] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE # 4][CAR] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #13][MINIBUS] Waiting in square (Side: A, Square Queue Length: 16)
+[VEHICLE #12][CAR] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE #10][CAR] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #12][CAR] Waiting in square (Side: A, Square Queue Length: 17)
+[VEHICLE #14][MINIBUS] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE #23][TRUCK] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #28][TRUCK] Waiting in square (Side: A, Square Queue Length: 18)
+[VEHICLE # 9][CAR] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE # 3][CAR] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE # 4][CAR] Waiting in square (Side: A, Square Queue Length: 19)
+[VEHICLE #20][MINIBUS] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE #20][MINIBUS] Waiting in square (Side: A, Square Queue Length: 20)
+[VEHICLE #14][MINIBUS] Waiting in square (Side: A, Square Queue Length: 21)
+[VEHICLE #23][TRUCK] Waiting in square (Side: A, Square Queue Length: 22)
+[VEHICLE # 9][CAR] Waiting in square (Side: A, Square Queue Length: 23)
+[VEHICLE # 3][CAR] Waiting in square (Side: A, Square Queue Length: 24)
+[VEHICLE #10][CAR] Waiting in square (Side: A, Square Queue Length: 25)
+[VEHICLE #21][MINIBUS] Boarded ferry (Side: A, Waiting Time: 1.535 sec, Ferry Load: 5/20)
+[VEHICLE #11][CAR] Boarded ferry (Side: A, Waiting Time: 1.656 sec, Ferry Load: 6/20)
+[VEHICLE #26][TRUCK] Boarded ferry (Side: A, Waiting Time: 1.626 sec, Ferry Load: 9/20)
+[VEHICLE #15][MINIBUS] Boarded ferry (Side: A, Waiting Time: 1.767 sec, Ferry Load: 11/20)
+[VEHICLE # 6][CAR] Boarded ferry (Side: A, Waiting Time: 1.756 sec, Ferry Load: 12/20)
+[VEHICLE #24][TRUCK] Boarded ferry (Side: A, Waiting Time: 0.363 sec, Ferry Load: 15/20)
+[VEHICLE #13][MINIBUS] Boarded ferry (Side: A, Waiting Time: 0.403 sec, Ferry Load: 17/20)
+[VEHICLE #12][CAR] Boarded ferry (Side: A, Waiting Time: 0.443 sec, Ferry Load: 18/20)
+[VEHICLE # 4][CAR] Boarded ferry (Side: A, Waiting Time: 0.473 sec, Ferry Load: 19/20)
+[VEHICLE # 9][CAR] Boarded ferry (Side: A, Waiting Time: 0.483 sec, Ferry Load: 20/20)
+
+[FERRY] Ferry is full (20/20) → Departure triggered
+
+===============================================
+[FERRY] TRIP 2 DEPARTING!
+  From Side: A → To Side: B
+  Vehicles on board: 11
+  Total load: 20/20 units
+  Remaining capacity: 0 units
+
+  VEHICLES ON BOARD:
+    1. Vehicle #27 (TRUCK) - 3 units
+    2. Vehicle #21 (MINIBUS) - 2 units
+    3. Vehicle #11 (CAR) - 1 units
+    4. Vehicle #26 (TRUCK) - 3 units
+    5. Vehicle #15 (MINIBUS) - 2 units
+    6. Vehicle # 6 (CAR) - 1 units
+    7. Vehicle #24 (TRUCK) - 3 units
+    8. Vehicle #13 (MINIBUS) - 2 units
+    9. Vehicle #12 (CAR) - 1 units
+    10. Vehicle # 4 (CAR) - 1 units
+    11. Vehicle # 9 (CAR) - 1 units
+===============================================
+
+--- UNLOADING VEHICLES ---
+[VEHICLE #27][TRUCK] Got off from ferry (Side: B, Ferry Travel Time: 1.550 sec)
+[VEHICLE #21][MINIBUS] Got off from ferry (Side: B, Ferry Travel Time: 1.394 sec)
+[VEHICLE #11][CAR] Got off from ferry (Side: B, Ferry Travel Time: 1.344 sec)
+[VEHICLE #26][TRUCK] Got off from ferry (Side: B, Ferry Travel Time: 1.294 sec)
+[VEHICLE #15][MINIBUS] Got off from ferry (Side: B, Ferry Travel Time: 1.244 sec)
+[VEHICLE # 6][CAR] Got off from ferry (Side: B, Ferry Travel Time: 1.194 sec)
+[VEHICLE #24][TRUCK] Got off from ferry (Side: B, Ferry Travel Time: 1.144 sec)
+[VEHICLE #24][TRUCK] Has returned to initial side (Side: B)
+[VEHICLE #13][MINIBUS] Got off from ferry (Side: B, Ferry Travel Time: 1.093 sec)
+[VEHICLE #13][MINIBUS] Has returned to initial side (Side: B)
+[VEHICLE #12][CAR] Got off from ferry (Side: B, Ferry Travel Time: 1.043 sec)
+[VEHICLE #12][CAR] Has returned to initial side (Side: B)
+[VEHICLE # 4][CAR] Got off from ferry (Side: B, Ferry Travel Time: 0.993 sec)
+[VEHICLE # 4][CAR] Has returned to initial side (Side: B)
+[VEHICLE # 9][CAR] Got off from ferry (Side: B, Ferry Travel Time: 0.942 sec)
+[VEHICLE # 9][CAR] Has returned to initial side (Side: B)
+--- UNLOADING COMPLETE ---
+
+[FERRY] Trip 2 completed (Duration: 0.500 sec)
+
+===============================================
+[VEHICLE #16][MINIBUS] Boarded ferry (Side: B, Waiting Time: 3.000 sec, Ferry Load: 2/20)
+[VEHICLE #21][MINIBUS] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE #15][MINIBUS] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE #21][MINIBUS] Waiting in square (Side: B, Square Queue Length: 4)
+[VEHICLE #26][TRUCK] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE #15][MINIBUS] Waiting in square (Side: B, Square Queue Length: 5)
+[VEHICLE #11][CAR] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE #26][TRUCK] Waiting in square (Side: B, Square Queue Length: 6)
+[VEHICLE # 6][CAR] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE #11][CAR] Waiting in square (Side: B, Square Queue Length: 7)
+[VEHICLE #27][TRUCK] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE # 6][CAR] Waiting in square (Side: B, Square Queue Length: 8)
+[VEHICLE #27][TRUCK] Waiting in square (Side: B, Square Queue Length: 9)
+[VEHICLE #25][TRUCK] Boarded ferry (Side: B, Waiting Time: 3.032 sec, Ferry Load: 5/20)
+[VEHICLE # 8][CAR] Boarded ferry (Side: B, Waiting Time: 3.112 sec, Ferry Load: 6/20)
+[VEHICLE #11][CAR] Boarded ferry (Side: B, Waiting Time: 0.131 sec, Ferry Load: 7/20)
+[VEHICLE #15][MINIBUS] Boarded ferry (Side: B, Waiting Time: 0.202 sec, Ferry Load: 9/20)
+[VEHICLE #27][TRUCK] Boarded ferry (Side: B, Waiting Time: 0.211 sec, Ferry Load: 12/20)
+[VEHICLE #30][TRUCK] Boarded ferry (Side: B, Waiting Time: 3.242 sec, Ferry Load: 15/20)
+[VEHICLE # 6][CAR] Boarded ferry (Side: B, Waiting Time: 0.323 sec, Ferry Load: 16/20)
+[VEHICLE #26][TRUCK] Boarded ferry (Side: B, Waiting Time: 0.393 sec, Ferry Load: 19/20)
+
+[FERRY] Vehicle #21 (MINIBUS) cannot fit: 19 + 2 = 21 > 20 (Ferry Capacity) → Departure triggered
+
+===============================================
+[FERRY] TRIP 3 DEPARTING!
+  From Side: B → To Side: A
+  Vehicles on board: 9
+  Total load: 19/20 units
+  Remaining capacity: 1 units
+
+  VEHICLES ON BOARD:
+    1. Vehicle #16 (MINIBUS) - 2 units
+    2. Vehicle #25 (TRUCK) - 3 units
+    3. Vehicle # 8 (CAR) - 1 units
+    4. Vehicle #11 (CAR) - 1 units
+    5. Vehicle #15 (MINIBUS) - 2 units
+    6. Vehicle #27 (TRUCK) - 3 units
+    7. Vehicle #30 (TRUCK) - 3 units
+    8. Vehicle # 6 (CAR) - 1 units
+    9. Vehicle #26 (TRUCK) - 3 units
+===============================================
+
+--- UNLOADING VEHICLES ---
+[VEHICLE #16][MINIBUS] Got off from ferry (Side: A, Ferry Travel Time: 1.551 sec)
+[VEHICLE #25][TRUCK] Got off from ferry (Side: A, Ferry Travel Time: 1.469 sec)
+[VEHICLE # 8][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.419 sec)
+[VEHICLE #11][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.368 sec)
+[VEHICLE #11][CAR] Has returned to initial side (Side: A)
+[VEHICLE #15][MINIBUS] Got off from ferry (Side: A, Ferry Travel Time: 1.318 sec)
+[VEHICLE #15][MINIBUS] Has returned to initial side (Side: A)
+[VEHICLE #27][TRUCK] Got off from ferry (Side: A, Ferry Travel Time: 1.268 sec)
+[VEHICLE #27][TRUCK] Has returned to initial side (Side: A)
+[VEHICLE #30][TRUCK] Got off from ferry (Side: A, Ferry Travel Time: 1.218 sec)
+[VEHICLE # 6][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.167 sec)
+[VEHICLE # 6][CAR] Has returned to initial side (Side: A)
+[VEHICLE #26][TRUCK] Got off from ferry (Side: A, Ferry Travel Time: 1.117 sec)
+[VEHICLE #26][TRUCK] Has returned to initial side (Side: A)
+--- UNLOADING COMPLETE ---
+
+[FERRY] Trip 3 completed (Duration: 0.500 sec)
+
+===============================================
+[VEHICLE # 5][CAR] Boarded ferry (Side: A, Waiting Time: 4.571 sec, Ferry Load: 1/20)
+[VEHICLE #16][MINIBUS] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #16][MINIBUS] Waiting in square (Side: A, Square Queue Length: 15)
+[VEHICLE # 8][CAR] Passing through toll (Side: A, Toll: A-1)
+[VEHICLE #25][TRUCK] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE # 8][CAR] Waiting in square (Side: A, Square Queue Length: 16)
+[VEHICLE #30][TRUCK] Passing through toll (Side: A, Toll: A-2)
+[VEHICLE #25][TRUCK] Waiting in square (Side: A, Square Queue Length: 17)
+[VEHICLE #30][TRUCK] Waiting in square (Side: A, Square Queue Length: 18)
+[VEHICLE # 1][CAR] Boarded ferry (Side: A, Waiting Time: 4.667 sec, Ferry Load: 2/20)
+[VEHICLE #30][TRUCK] Boarded ferry (Side: A, Waiting Time: 0.060 sec, Ferry Load: 5/20)
+[VEHICLE #28][TRUCK] Boarded ferry (Side: A, Waiting Time: 3.203 sec, Ferry Load: 8/20)
+[VEHICLE #14][MINIBUS] Boarded ferry (Side: A, Waiting Time: 3.223 sec, Ferry Load: 10/20)
+[VEHICLE # 3][CAR] Boarded ferry (Side: A, Waiting Time: 3.242 sec, Ferry Load: 11/20)
+[VEHICLE # 2][CAR] Boarded ferry (Side: A, Waiting Time: 4.908 sec, Ferry Load: 12/20)
+[VEHICLE #23][TRUCK] Boarded ferry (Side: A, Waiting Time: 3.363 sec, Ferry Load: 15/20)
+[VEHICLE #17][MINIBUS] Boarded ferry (Side: A, Waiting Time: 4.968 sec, Ferry Load: 17/20)
+[VEHICLE #20][MINIBUS] Boarded ferry (Side: A, Waiting Time: 3.484 sec, Ferry Load: 19/20)
+[VEHICLE #10][CAR] Boarded ferry (Side: A, Waiting Time: 3.483 sec, Ferry Load: 20/20)
+
+[FERRY] Ferry is full (20/20) → Departure triggered
+
+===============================================
+[FERRY] TRIP 4 DEPARTING!
+  From Side: A → To Side: B
+  Vehicles on board: 11
+  Total load: 20/20 units
+  Remaining capacity: 0 units
+
+  VEHICLES ON BOARD:
+    1. Vehicle # 5 (CAR) - 1 units
+    2. Vehicle # 1 (CAR) - 1 units
+    3. Vehicle #30 (TRUCK) - 3 units
+    4. Vehicle #28 (TRUCK) - 3 units
+    5. Vehicle #14 (MINIBUS) - 2 units
+    6. Vehicle # 3 (CAR) - 1 units
+    7. Vehicle # 2 (CAR) - 1 units
+    8. Vehicle #23 (TRUCK) - 3 units
+    9. Vehicle #17 (MINIBUS) - 2 units
+    10. Vehicle #20 (MINIBUS) - 2 units
+    11. Vehicle #10 (CAR) - 1 units
+===============================================
+
+--- UNLOADING VEHICLES ---
+[VEHICLE # 5][CAR] Got off from ferry (Side: B, Ferry Travel Time: 1.551 sec)
+[VEHICLE # 1][CAR] Got off from ferry (Side: B, Ferry Travel Time: 1.475 sec)
+[VEHICLE #30][TRUCK] Got off from ferry (Side: B, Ferry Travel Time: 1.425 sec)
+[VEHICLE #30][TRUCK] Has returned to initial side (Side: B)
+[VEHICLE #28][TRUCK] Got off from ferry (Side: B, Ferry Travel Time: 1.375 sec)
+[VEHICLE #28][TRUCK] Has returned to initial side (Side: B)
+[VEHICLE #14][MINIBUS] Got off from ferry (Side: B, Ferry Travel Time: 1.325 sec)
+[VEHICLE #14][MINIBUS] Has returned to initial side (Side: B)
+[VEHICLE # 3][CAR] Got off from ferry (Side: B, Ferry Travel Time: 1.275 sec)
+[VEHICLE # 3][CAR] Has returned to initial side (Side: B)
+[VEHICLE # 2][CAR] Got off from ferry (Side: B, Ferry Travel Time: 1.225 sec)
+[VEHICLE #23][TRUCK] Got off from ferry (Side: B, Ferry Travel Time: 1.174 sec)
+[VEHICLE #23][TRUCK] Has returned to initial side (Side: B)
+[VEHICLE #17][MINIBUS] Got off from ferry (Side: B, Ferry Travel Time: 1.124 sec)
+[VEHICLE #20][MINIBUS] Got off from ferry (Side: B, Ferry Travel Time: 1.074 sec)
+[VEHICLE #20][MINIBUS] Has returned to initial side (Side: B)
+[VEHICLE #10][CAR] Got off from ferry (Side: B, Ferry Travel Time: 1.024 sec)
+[VEHICLE #10][CAR] Has returned to initial side (Side: B)
+--- UNLOADING COMPLETE ---
+
+[FERRY] Trip 4 completed (Duration: 0.501 sec)
+
+===============================================
+[VEHICLE #21][MINIBUS] Boarded ferry (Side: B, Waiting Time: 3.082 sec, Ferry Load: 2/20)
+[VEHICLE # 5][CAR] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE # 1][CAR] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE # 5][CAR] Waiting in square (Side: B, Square Queue Length: 1)
+[VEHICLE # 2][CAR] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE #17][MINIBUS] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE # 1][CAR] Waiting in square (Side: B, Square Queue Length: 2)
+[VEHICLE # 2][CAR] Waiting in square (Side: B, Square Queue Length: 3)
+[VEHICLE #17][MINIBUS] Waiting in square (Side: B, Square Queue Length: 4)
+[VEHICLE # 5][CAR] Boarded ferry (Side: B, Waiting Time: 0.060 sec, Ferry Load: 3/20)
+[VEHICLE # 1][CAR] Boarded ferry (Side: B, Waiting Time: 0.100 sec, Ferry Load: 4/20)
+[VEHICLE #17][MINIBUS] Boarded ferry (Side: B, Waiting Time: 0.130 sec, Ferry Load: 6/20)
+[VEHICLE # 2][CAR] Boarded ferry (Side: B, Waiting Time: 0.190 sec, Ferry Load: 7/20)
+
+[FERRY] All suitable vehicles in square have boarded → Departure triggered
+
+===============================================
+[FERRY] TRIP 5 DEPARTING!
+  From Side: B → To Side: A
+  Vehicles on board: 5
+  Total load: 7/20 units
+  Remaining capacity: 13 units
+
+  VEHICLES ON BOARD:
+    1. Vehicle #21 (MINIBUS) - 2 units
+    2. Vehicle # 5 (CAR) - 1 units
+    3. Vehicle # 1 (CAR) - 1 units
+    4. Vehicle #17 (MINIBUS) - 2 units
+    5. Vehicle # 2 (CAR) - 1 units
+===============================================
+
+--- UNLOADING VEHICLES ---
+[VEHICLE #21][MINIBUS] Got off from ferry (Side: A, Ferry Travel Time: 1.551 sec)
+[VEHICLE #21][MINIBUS] Has returned to initial side (Side: A)
+[VEHICLE # 5][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.462 sec)
+[VEHICLE # 5][CAR] Has returned to initial side (Side: A)
+[VEHICLE # 1][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.412 sec)
+[VEHICLE # 1][CAR] Has returned to initial side (Side: A)
+[VEHICLE #17][MINIBUS] Got off from ferry (Side: A, Ferry Travel Time: 1.362 sec)
+[VEHICLE #17][MINIBUS] Has returned to initial side (Side: A)
+[VEHICLE # 2][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.312 sec)
+[VEHICLE # 2][CAR] Has returned to initial side (Side: A)
+--- UNLOADING COMPLETE ---
+
+[FERRY] Trip 5 completed (Duration: 0.500 sec)
+
+===============================================
+[VEHICLE # 7][CAR] Boarded ferry (Side: A, Waiting Time: 7.562 sec, Ferry Load: 1/20)
+[VEHICLE # 8][CAR] Boarded ferry (Side: A, Waiting Time: 3.107 sec, Ferry Load: 2/20)
+[VEHICLE #22][MINIBUS] Boarded ferry (Side: A, Waiting Time: 7.693 sec, Ferry Load: 4/20)
+[VEHICLE #16][MINIBUS] Boarded ferry (Side: A, Waiting Time: 3.229 sec, Ferry Load: 6/20)
+[VEHICLE #19][MINIBUS] Boarded ferry (Side: A, Waiting Time: 7.814 sec, Ferry Load: 8/20)
+[VEHICLE #18][MINIBUS] Boarded ferry (Side: A, Waiting Time: 7.874 sec, Ferry Load: 10/20)
+[VEHICLE #25][TRUCK] Boarded ferry (Side: A, Waiting Time: 3.348 sec, Ferry Load: 13/20)
+[VEHICLE #29][TRUCK] Boarded ferry (Side: A, Waiting Time: 7.904 sec, Ferry Load: 16/20)
+
+[FERRY] All suitable vehicles in square have boarded → Departure triggered
+
+===============================================
+[FERRY] TRIP 6 DEPARTING!
+  From Side: A → To Side: B
+  Vehicles on board: 8
+  Total load: 16/20 units
+  Remaining capacity: 4 units
+
+  VEHICLES ON BOARD:
+    1. Vehicle # 7 (CAR) - 1 units
+    2. Vehicle # 8 (CAR) - 1 units
+    3. Vehicle #22 (MINIBUS) - 2 units
+    4. Vehicle #16 (MINIBUS) - 2 units
+    5. Vehicle #19 (MINIBUS) - 2 units
+    6. Vehicle #18 (MINIBUS) - 2 units
+    7. Vehicle #25 (TRUCK) - 3 units
+    8. Vehicle #29 (TRUCK) - 3 units
+===============================================
+
+--- UNLOADING VEHICLES ---
+[VEHICLE # 7][CAR] Got off from ferry (Side: B, Ferry Travel Time: 1.551 sec)
+[VEHICLE # 8][CAR] Got off from ferry (Side: B, Ferry Travel Time: 1.500 sec)
+[VEHICLE # 8][CAR] Has returned to initial side (Side: B)
+[VEHICLE #22][MINIBUS] Got off from ferry (Side: B, Ferry Travel Time: 1.450 sec)
+[VEHICLE #16][MINIBUS] Got off from ferry (Side: B, Ferry Travel Time: 1.400 sec)
+[VEHICLE #16][MINIBUS] Has returned to initial side (Side: B)
+[VEHICLE #19][MINIBUS] Got off from ferry (Side: B, Ferry Travel Time: 1.350 sec)
+[VEHICLE #18][MINIBUS] Got off from ferry (Side: B, Ferry Travel Time: 1.299 sec)
+[VEHICLE #25][TRUCK] Got off from ferry (Side: B, Ferry Travel Time: 1.249 sec)
+[VEHICLE #25][TRUCK] Has returned to initial side (Side: B)
+[VEHICLE #29][TRUCK] Got off from ferry (Side: B, Ferry Travel Time: 1.199 sec)
+--- UNLOADING COMPLETE ---
+
+[FERRY] Trip 6 completed (Duration: 0.500 sec)
+
+===============================================
+[VEHICLE #19][MINIBUS] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE #29][TRUCK] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE #19][MINIBUS] Waiting in square (Side: B, Square Queue Length: 1)
+[VEHICLE # 7][CAR] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE #22][MINIBUS] Passing through toll (Side: B, Toll: B-1)
+[VEHICLE #22][MINIBUS] Waiting in square (Side: B, Square Queue Length: 2)
+[VEHICLE #18][MINIBUS] Passing through toll (Side: B, Toll: B-2)
+[VEHICLE # 7][CAR] Waiting in square (Side: B, Square Queue Length: 3)
+[VEHICLE #29][TRUCK] Waiting in square (Side: B, Square Queue Length: 4)
+[VEHICLE #18][MINIBUS] Waiting in square (Side: B, Square Queue Length: 5)
+[VEHICLE #19][MINIBUS] Boarded ferry (Side: B, Waiting Time: 0.060 sec, Ferry Load: 2/20)
+[VEHICLE #22][MINIBUS] Boarded ferry (Side: B, Waiting Time: 0.101 sec, Ferry Load: 4/20)
+[VEHICLE # 7][CAR] Boarded ferry (Side: B, Waiting Time: 0.141 sec, Ferry Load: 5/20)
+[VEHICLE #29][TRUCK] Boarded ferry (Side: B, Waiting Time: 0.180 sec, Ferry Load: 8/20)
+[VEHICLE #18][MINIBUS] Boarded ferry (Side: B, Waiting Time: 0.220 sec, Ferry Load: 10/20)
+
+[FERRY] All suitable vehicles in square have boarded → Departure triggered
+
+===============================================
+[FERRY] TRIP 7 DEPARTING!
+  From Side: B → To Side: A
+  Vehicles on board: 5
+  Total load: 10/20 units
+  Remaining capacity: 10 units
+
+  VEHICLES ON BOARD:
+    1. Vehicle #19 (MINIBUS) - 2 units
+    2. Vehicle #22 (MINIBUS) - 2 units
+    3. Vehicle # 7 (CAR) - 1 units
+    4. Vehicle #29 (TRUCK) - 3 units
+    5. Vehicle #18 (MINIBUS) - 2 units
+===============================================
+
+--- UNLOADING VEHICLES ---
+[VEHICLE #19][MINIBUS] Got off from ferry (Side: A, Ferry Travel Time: 1.476 sec)
+[VEHICLE #19][MINIBUS] Has returned to initial side (Side: A)
+[VEHICLE #22][MINIBUS] Got off from ferry (Side: A, Ferry Travel Time: 1.426 sec)
+[VEHICLE #22][MINIBUS] Has returned to initial side (Side: A)
+[VEHICLE # 7][CAR] Got off from ferry (Side: A, Ferry Travel Time: 1.376 sec)
+[VEHICLE # 7][CAR] Has returned to initial side (Side: A)
+[VEHICLE #29][TRUCK] Got off from ferry (Side: A, Ferry Travel Time: 1.326 sec)
+[VEHICLE #29][TRUCK] Has returned to initial side (Side: A)
+[VEHICLE #18][MINIBUS] Got off from ferry (Side: A, Ferry Travel Time: 1.275 sec)
+[VEHICLE #18][MINIBUS] Has returned to initial side (Side: A)
+--- UNLOADING COMPLETE ---
+
+[FERRY] Trip 7 completed (Duration: 0.500 sec)
+
+===============================================
+
+[FERRY] All vehicles have returned. Ferry service ending.
+
+==================== SIMULATION SUMMARY ====================
+Total trips: 7
+Total vehicles transported: 60
+Total simulation time: 10.855 seconds
+Total waiting time in queue: 120.902 seconds
+Average waiting time per vehicle: 2.015 seconds
+
+--- TRIP DETAILS ---
+Trip 1: From SIDE B → To SIDE A, 11 vehicles, 20/20 units of Ferry Capacity used, 0 units of Ferry Capacity free, Duration: 0.500 sec
+  Vehicles: #4(CAR) #3(CAR) #14(MINIBUS) #13(MINIBUS) #10(CAR) #20(MINIBUS) #9(CAR) #23(TRUCK) #24(TRUCK) #12(CAR) #28(TRUCK) 
+
+Trip 2: From SIDE A → To SIDE B, 11 vehicles, 20/20 units of Ferry Capacity used, 0 units of Ferry Capacity free, Duration: 0.500 sec
+  Vehicles: #27(TRUCK) #21(MINIBUS) #11(CAR) #26(TRUCK) #15(MINIBUS) #6(CAR) #24(TRUCK) #13(MINIBUS) #12(CAR) #4(CAR) #9(CAR) 
+
+Trip 3: From SIDE B → To SIDE A, 9 vehicles, 19/20 units of Ferry Capacity used, 1 units of Ferry Capacity free, Duration: 0.500 sec
+  Vehicles: #16(MINIBUS) #25(TRUCK) #8(CAR) #11(CAR) #15(MINIBUS) #27(TRUCK) #30(TRUCK) #6(CAR) #26(TRUCK) 
+
+Trip 4: From SIDE A → To SIDE B, 11 vehicles, 20/20 units of Ferry Capacity used, 0 units of Ferry Capacity free, Duration: 0.501 sec
+  Vehicles: #5(CAR) #1(CAR) #30(TRUCK) #28(TRUCK) #14(MINIBUS) #3(CAR) #2(CAR) #23(TRUCK) #17(MINIBUS) #20(MINIBUS) #10(CAR) 
+
+Trip 5: From SIDE B → To SIDE A, 5 vehicles, 7/20 units of Ferry Capacity used, 13 units of Ferry Capacity free, Duration: 0.500 sec
+  Vehicles: #21(MINIBUS) #5(CAR) #1(CAR) #17(MINIBUS) #2(CAR) 
+
+Trip 6: From SIDE A → To SIDE B, 8 vehicles, 16/20 units of Ferry Capacity used, 4 units of Ferry Capacity free, Duration: 0.500 sec
+  Vehicles: #7(CAR) #8(CAR) #22(MINIBUS) #16(MINIBUS) #19(MINIBUS) #18(MINIBUS) #25(TRUCK) #29(TRUCK) 
+
+Trip 7: From SIDE B → To SIDE A, 5 vehicles, 10/20 units of Ferry Capacity used, 10 units of Ferry Capacity free, Duration: 0.500 sec
+  Vehicles: #19(MINIBUS) #22(MINIBUS) #7(CAR) #29(TRUCK) #18(MINIBUS) 
+
+==========================================================
+
+All vehicles have returned to their initial side. Simulation finished.
