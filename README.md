@@ -1,2 +1,2 @@
 # FerryTour
-An OS Project using PThreads
+An OS Project Using PThreads Which Simulates Ferry Tour
